@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2A6B50">
+<meta name="description" content="Pesan online Penyetan 234 Bandung: menu halal, nasi kotak, pesan antar, ambil sendiri, dan reservasi lewat WhatsApp.">
+<title>Penyetan 234 Bandung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="bar"><div class="in gut">
+    <h1 id="barTitle">Penyetan 234</h1>
+    <span class="pill" id="status" role="status"><i></i><span id="statusText">…</span></span>
+  </div>
+  <div class="bar-row gut" id="barMode">
+    <div class="mode" role="radiogroup" aria-label="Jenis pesanan" id="mode">
+      <button type="button" role="radio" aria-checked="true" data-mode="antar">Antar</button>
+      <button type="button" role="radio" aria-checked="false" data-mode="ambil">Ambil</button>
+      <button type="button" role="radio" aria-checked="false" data-mode="makan">Di tempat</button>
+    </div>
+  </div>
+  <div class="bar-row gut" id="barCart" hidden>
+    <button type="button" class="bar-cart" id="barCartBtn"><span class="bc-left"><span class="count" id="bcCount">0</span><span>Lihat pesanan</span></span><span id="bcTotal"></span></button>
+  </div></header>
+
+  <main>
+    <!-- MENU -->
+    <section class="view" id="v-menu" aria-label="Menu">
+      <div class="gut">
+        <div class="intro">
+          <div><h2>Mau makan apa?</h2><p>Halal lagi thayyib. Ayam, bebek, ikan, sate, dan aneka lauk khas penyetan, Bandung.</p></div>
+          <p class="mode-help" id="modeHelp"></p>
+        </div>
+      </div>
+      <div class="tools gut">
+        <label class="sr" for="q">Cari menu</label>
+        <input class="search" id="q" type="search" placeholder="Cari menu, misalnya bebek" autocomplete="off">
+        <div class="chips" id="chips" role="group" aria-label="Kategori"></div>
+      </div>
+      <div class="gut" id="menuList"></div>
+    </section>
+
+    <!-- PESANAN -->
+    <section class="view" id="v-pesanan" aria-label="Pesanan" hidden>
+      <div class="gut" id="pesananBody"></div>
+    </section>
+
+    <!-- RESERVASI -->
+    <section class="view" id="v-reservasi" aria-label="Reservasi" hidden>
+      <div class="gut">
+        <div class="intro"><div><h2>Reservasi meja</h2><p>Makan bersama keluarga atau kantor? Isi data, lalu kirim ke WhatsApp kami untuk konfirmasi.</p></div></div>
+        <form class="card" id="resForm" novalidate style="margin-top:0">
+          <div class="field"><label for="rNama">Nama</label><input id="rNama" autocomplete="name" required></div>
+          <div class="field"><label for="rHp">Nomor WhatsApp</label><input id="rHp" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" required></div>
+          <div class="row2">
+            <div class="field"><label for="rTgl">Tanggal</label><input id="rTgl" type="date" required></div>
+            <div class="field"><label for="rJam">Jam datang</label><select id="rJam" required></select></div>
+          </div>
+          <div class="field"><label for="rOrang">Jumlah orang</label><select id="rOrang"></select></div>
+          <div class="field"><label for="rCatatan">Catatan</label><textarea id="rCatatan" placeholder="Misalnya kursi anak atau area tidak merokok"></textarea></div>
+          <p class="err" id="rErr" role="alert"></p>
+          <div class="btns">
+            <a class="btn primary" id="rSend" href="#" target="_blank" rel="noopener">Kirim reservasi lewat WhatsApp</a>
+            <button type="button" class="btn ghost" id="rCopy">Salin pesan reservasi</button>
+          </div>
+          <p class="hint">Reservasi baru berlaku setelah kami membalas di WhatsApp.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section class="view" id="v-info" aria-label="Info" hidden>
+      <div class="gut">
+        <div class="intro"><div><h2>Info toko</h2></div></div>
+        <dl class="info">
+          <dt>Jam buka</dt><dd id="iJam"></dd>
+          <dt>Alamat</dt><dd id="iAlamat"></dd>
+          <dt>WhatsApp</dt><dd id="iWa"></dd>
+          <dt>Instagram</dt><dd><a id="iIg" target="_blank" rel="noopener"></a></dd>
+          <dt>Ongkir</dt><dd id="iOngkir"></dd>
+          <dt>Minimal pesan</dt><dd id="iMin"></dd>
+        </dl>
+        <h3 class="sec-title">Pertanyaan umum</h3>
+        <div class="faq">
+          <details><summary>Apakah semua menu halal?</summary><p>Ya, semua menu disiapkan halal.</p></details>
+          <details><summary>Apakah nasi kotak bisa dimakan di tempat?</summary><p>Tidak. Nasi kotak hanya untuk pesan antar atau ambil sendiri.</p></details>
+          <details><summary>Bagaimana memilih tingkat pedas?</summary><p>Pilihan tingkat pedas ada di menu tumisan: kangkung, capcay, brokoli, dan tauge. Ketuk menunya, lalu pilih dari tidak pedas sampai super pedas.</p></details>
+          <details><summary>Bisa pesan untuk besok atau hari lain?</summary><p>Bisa. Pilih tanggal dan jam di form pesanan. Pesanan dikonfirmasi lewat WhatsApp.</p></details>
+          <details><summary>Cara bayarnya bagaimana?</summary><p>Tunai saat pesanan sampai, transfer bank, atau QRIS. Detail pembayaran kami kirim setelah pesanan dikonfirmasi.</p></details>
+          <details><summary>Pesanan saya salah atau kurang?</summary><p>Hubungi kami lewat WhatsApp di hari yang sama dengan menyebutkan nama pemesan.</p></details>
+        </div>
+        <p class="foot">© <span id="yr"></span> Penyetan 234 Bandung. Halal, segar, harga bersahabat.</p>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </main>
+
+  <nav class="tabs" aria-label="Navigasi utama">
+    <button type="button" data-tab="menu" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Menu</button>
+    <button type="button" data-tab="pesanan"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Pesanan<span class="badge" id="tabBadge" hidden>0</span></button>
+    <button type="button" data-tab="reservasi"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Reservasi</button>
+    <button type="button" data-tab="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>Info</button>
+  </nav>
+
+  <div class="sheet-wrap" id="sheetWrap" hidden>
+    <div class="backdrop" id="backdrop"></div>
+    <div class="sheet gut" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" id="sheet"></div>
+  </div>
+</div>
+
+<script src="js/data/config.js"></script>
+<script src="js/data/menu.js"></script>
+<script src="js/core/utils.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/features/cart.js"></script>
+<script src="js/features/menu-view.js"></script>
+<script src="js/features/order-view.js"></script>
+<script src="js/features/checkout.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
