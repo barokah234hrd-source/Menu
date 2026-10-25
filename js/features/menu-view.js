@@ -2,6 +2,11 @@
 /* menu */
 const priceLabel=it=>{if(it.v){const ps=it.v.map(x=>x.p),lo=Math.min(...ps),hi=Math.max(...ps);return lo===hi?rp(lo):`${rp(lo)} – ${new Intl.NumberFormat("id-ID").format(hi)}`}return rp(it.p)};
 const heat=h=>h?`<span class="heat" role="img" aria-label="Pedas ${h} dari 3">${[1,2,3].map(i=>`<i class="${i<=h?"on":""}"></i>`).join("")}</span>`:"";
+/* Foto menu: file ada di images/menu/. IMG_INLINE hanya diisi pada versi pratinjau satu file. */
+const imgSrc=f=>(window.IMG_INLINE&&window.IMG_INLINE[f])||("images/menu/"+encodeURIComponent(f));
+const tileHtml=(it,k,size)=>it.img
+  ? `<img class="tile photo" src="${imgSrc(it.img)}" alt="" width="${size}" height="${size}" loading="lazy" decoding="async" data-k="${k}" data-ini="${esc(initials(it.n))}">`
+  : `<div class="tile c${k}" aria-hidden="true">${initials(it.n)}</div>`;
 const initials=n=>n.replace(/^Naskot\s+/,"").replace(/\(.*\)/,"").trim().split(/\s+/).slice(0,2).map(w=>w[0]).join("").toUpperCase();
 function renderChips(){
   if(state.cat!=="Semua"&&state.cat!=="Favorit"&&!menuGroups().some(g=>g.c===state.cat)) state.cat="Semua";
@@ -20,7 +25,7 @@ function renderMenu(){
     if(!its.length) continue;count+=its.length;
     html+=`<div class="cat"><h2>${g.c}</h2><p class="sub">${g.sub}</p>${g.promo?`<div class="promo">${g.promo}</div>`:""}`+its.map(it=>`
       <article class="item" data-open="${it.id}" role="button" tabindex="0" aria-label="Detail ${esc(it.n)}">
-        <div class="tile c${g.k}" aria-hidden="true">${initials(it.n)}</div>
+        ${tileHtml(it,g.k,60)}
         <div class="tx"><h3>${esc(it.n)}</h3>${it.d?`<p class="desc">${esc(it.d)}</p>`:(it.v?`<p class="desc">${esc(it.v.map(x=>x.n).join(", "))}</p>`:"")}
           <div class="meta"><span class="price">${priceLabel(it)}</span>${heat(it.h)}${it.t?`<span class="tag">★ ${it.t}</span>`:""}</div></div>
         <div>${itemAction(it)}</div>
@@ -38,7 +43,8 @@ function openItem(id){
 function renderItemSheet(){
   const it=sheetItem;
   $("#sheet").innerHTML=`<div class="grab"></div>
-    <div style="display:flex;gap:14px;align-items:center"><div class="tile c${it.k}" style="width:72px;height:72px;font-size:1.5rem" aria-hidden="true">${initials(it.n)}</div>
+    ${it.img?`<img class="hero-photo" src="${imgSrc((it.v&&(it.v.find(x=>x.n===sheetVariant)||{}).img)||it.img)}" alt="Foto ${esc(it.n)}" width="640" height="400" decoding="async" data-hero>`:""}
+    <div style="display:flex;gap:14px;align-items:center">${it.img?"":`<div class="tile c${it.k}" style="width:72px;height:72px;font-size:1.5rem" aria-hidden="true">${initials(it.n)}</div>`}
       <div style="min-width:0"><h2 id="sheetTitle">${esc(it.n)}</h2><div class="meta" style="display:flex;gap:8px;align-items:center;margin-top:6px"><span class="price" id="sPriceHead">${priceLabel(it)}</span>${heat(it.h)}${it.t?`<span class="tag">★ ${it.t}</span>`:""}</div></div></div>
     ${it.d?`<p class="hint" style="font-size:.95rem">${esc(it.d)}</p>`:""}
     ${it.v?`<div class="field"><span class="lb" id="vrLb">Pilihan</span><div class="lv" role="radiogroup" aria-labelledby="vrLb">${it.v.map(v=>`<label><input type="radio" name="vr" value="${esc(v.n)}"${v.n===sheetVariant?" checked":""}>${esc(v.n)}${new Set(it.v.map(x=>x.p)).size>1?`<br><small>${rp(v.p)}</small>`:""}</label>`).join("")}</div></div>`:""}

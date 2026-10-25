@@ -15,6 +15,13 @@ function applyMode(){
   renderChrome();
 }
 
+/* Jika foto gagal dimuat, kembali ke kotak huruf (daftar) atau sembunyikan (panel detail). */
+document.addEventListener("error",e=>{
+  const t=e.target;if(!t||t.tagName!=="IMG")return;
+  if(t.classList.contains("photo")){const d=document.createElement("div");d.className="tile c"+t.dataset.k;d.setAttribute("aria-hidden","true");d.textContent=t.dataset.ini;t.replaceWith(d)}
+  else if(t.hasAttribute("data-hero")) t.remove();
+},true);
+
 function init(){
   $("#yr").textContent=new Date().getFullYear();
   $("#iJam").textContent=`Setiap hari, ${pad(CONFIG.buka)}:00 – ${pad(CONFIG.tutup)}:00 WIB`;

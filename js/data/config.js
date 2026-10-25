@@ -13,9 +13,9 @@ const CONFIG = {
 };
 const LEVELS = ["Tidak pedas","Sedang","Pedas","Super pedas"];
 const MODES = {
-  antar:{help:"Diantar ke alamat Anda. Ongkir Rp 10.000, gratis untuk pesanan Rp 150.000 ke atas.",lTgl:"Tanggal antar",lJam:"Jam antar"},
-  ambil:{help:"Pesan dulu, ambil di toko tanpa antre. Tanpa ongkir.",lTgl:"Tanggal ambil",lJam:"Jam ambil"},
-  makan:{help:"Hidangan siap saat Anda tiba. Tanpa ongkir. Nasi kotak tidak tersedia untuk makan di tempat.",lTgl:"Tanggal datang",lJam:"Jam datang"}
+  antar:{help:"Ongkir Rp 10.000, gratis mulai Rp 150.000.",lTgl:"Tanggal antar",lJam:"Jam antar"},
+  ambil:{help:"Pesan dulu, ambil di toko. Tanpa ongkir.",lTgl:"Tanggal ambil",lJam:"Jam ambil"},
+  makan:{help:"Siap saat Anda tiba. Nasi kotak tidak tersedia.",lTgl:"Tanggal datang",lJam:"Jam datang"}
 };
 const MODE_NAME = {antar:"Pesan antar",ambil:"Ambil sendiri",makan:"Makan di tempat"};
 const TITLES = {menu:"Penyetan 234",pesanan:"Pesanan",reservasi:"Reservasi",info:"Info toko"};
