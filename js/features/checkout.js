@@ -32,9 +32,7 @@ function orderMessage(){
   for(const l of state.cart){const it=BY[l.id];
     L.push(`${l.qty}x ${it.n}${l.variant?` - ${l.variant}`:""}${l.part?` - ${l.part}`:""}${l.upg&&l.upg!==UPG[0].n?` + ${l.upg}`:""}${l.level?` (${l.level})`:""} = ${rp(l.p*l.qty)}${l.note?`\n   Catatan: ${l.note}`:""}`)}
   if(kotakFree()) L.push("",`Promo nasi kotak: ${kotakFree()} box gratis atau voucher Rp 25.000 (mohon konfirmasi pilihan)`);
-  L.push("",`Subtotal: ${rp(t.sub)}`);
-  if(m==="antar") L.push(`Ongkir: ${t.ong?rp(t.ong):"Gratis"}`);
-  L.push(`*Total: ${rp(t.tot)}*`,`Pembayaran: ${f.bayar}`);
+  L.push("",`*Total: ${rp(t.tot)}*`,`Pembayaran: ${f.bayar}`);
   if(f.catatan.trim()) L.push(`Catatan: ${f.catatan.trim()}`);
   return L.join("\n");
 }

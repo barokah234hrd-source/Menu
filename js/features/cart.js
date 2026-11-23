@@ -1,4 +1,4 @@
-/* Logika keranjang: tambah, kurangi, hitung subtotal, ongkir, dan total. */
+/* Logika keranjang: tambah, kurangi, hitung subtotal dan total. */
 /* keranjang */
 const saveCart=()=>store.set("p234_cart3",state.cart);
 const keyOf=(id,level,note,v,u,pr)=>`${id}|${level}|${note}|${v}|${u}|${pr}`;
@@ -31,8 +31,7 @@ const dineBlocked=()=>state.mode==="makan"?state.cart.filter(l=>BY[l.id].noDine)
 function totals(){
   let sub=0,n=0;
   for(const l of state.cart){sub+=l.p*l.qty;n+=l.qty}
-  const ong=state.mode==="antar"&&sub>0?(sub>=CONFIG.gratisDi?0:CONFIG.ongkir):0;
-  return {sub,n,ong,tot:sub+ong};
+  return {sub,n,tot:sub};
 }
 function afterCart(){
   saveCart();renderMenu();renderChrome();

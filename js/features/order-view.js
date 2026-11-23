@@ -16,10 +16,8 @@ function renderPesanan(){
     <div class="intro"><div><h2>Pesanan Anda</h2><p>${MODE_NAME[m]}. Ganti jenis pesanan di bagian atas.</p></div></div>
     ${lines}
     ${dineBlocked().length?`<div class="promo bad" role="alert" style="margin-top:10px">Nasi kotak tidak bisa dimakan di tempat. Hapus nasi kotak dari pesanan, atau ganti jenis pesanan ke Antar atau Ambil di tab Menu.</div>`:""}
-    <div class="sum"><div><span>Subtotal</span><span>${rp(t.sub)}</span></div>
-      ${m==="antar"?`<div><span>Ongkir${t.ong===0?" (gratis)":""}</span><span>${rp(t.ong)}</span></div>`:""}
+    <div class="sum">
       <div class="tot"><span>Total</span><span>${rp(t.tot)}</span></div></div>
-    ${m==="antar"&&t.sub<CONFIG.gratisDi?`<p class="hint" style="margin-top:6px">Belanja ${rp(CONFIG.gratisDi-t.sub)} lagi untuk gratis ongkir.</p>`:""}
     ${kotakFree()?`<div class="promo" style="margin-top:10px">Promo nasi kotak: dapat ${kotakFree()} box gratis atau voucher Rp 25.000 per 25 box. Pilihannya dikonfirmasi lewat WhatsApp.</div>`:""}
     <form class="card" id="ordForm" novalidate>
       <div class="field"><label for="oNama">Nama</label><input id="oNama" autocomplete="name" value="${esc(f.nama)}"></div>

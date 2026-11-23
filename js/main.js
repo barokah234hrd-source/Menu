@@ -28,7 +28,6 @@ function init(){
   $("#iAlamat").textContent=CONFIG.alamat;
   $("#iWa").textContent=CONFIG.waTampil;
   $("#iIg").textContent="@"+CONFIG.ig;$("#iIg").href="https://www.instagram.com/"+CONFIG.ig;
-  $("#iOngkir").textContent=`${rp(CONFIG.ongkir)} otomatis untuk pesanan di bawah ${rp(CONFIG.gratisDi)}. Gratis ongkir untuk pesanan ${rp(CONFIG.gratisDi)} ke atas.`;
   if(CONFIG.minimalAntar>0) $("#iMin").textContent=`${rp(CONFIG.minimalAntar)} untuk pesan antar`;
   else {$("#iMin").hidden=true;$("#iMin").previousElementSibling.hidden=true}
 
